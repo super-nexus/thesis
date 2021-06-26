@@ -19,7 +19,7 @@ app.post("/login", (req, res) => {
     let givenUsername = req.body["username"];
     let givenPassword = req.body["password"];
 
-    console.log(req.body)
+    console.log("Request received: ", req.body)
 
     if(givenUsername && givenPassword){
         if(givenUsername == username && givenPassword == password){
@@ -30,7 +30,7 @@ app.post("/login", (req, res) => {
         }
     }
     else{
-        res.status(401).send("BAD REQUEST");
+        res.status(200).send("BAD REQUEST");
     }
 
 })
