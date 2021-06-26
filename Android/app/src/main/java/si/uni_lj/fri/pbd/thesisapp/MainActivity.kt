@@ -8,6 +8,7 @@ import android.widget.Button
 import android.widget.EditText
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.github.kittinunf.fuel.Fuel
+import com.github.kittinunf.fuel.core.extensions.jsonBody
 import com.github.kittinunf.fuel.httpPost
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -50,17 +51,15 @@ class MainActivity : AppCompatActivity() {
 
     private suspend fun login(username: String, password: String){
         try {
-            val urlAddress = "https://localhost:8081/login"
+            val urlAddress = "https://andrija-thesis.herokuapp.com/login"
             val data = "{ \"username\": \"$username\", \"password\": \"$password\" }"
 
-            val (_, _, result) = Fuel.post(urlAddress).body(data).responseString()
+            val (_, _, result) = Fuel.post(urlAddress).jsonBody(data).responseString()
             val (payload, error) = result
 
             if(payload.equals("OK")){
-                Log.i("andrija", "Its okay")
             }
             else{
-                Log.i("andrija", "It's not  okay")
             }
 
         }catch (error: IOException){
