@@ -1,0 +1,4 @@
+platformName: "Android"
+deviceName: "Pixel_3a_API_30_x86"
+automationName: "UIAutomator2"
+appPath: '/Users/andrijakuzmanov/Documents/code/thesis/Android/app/debug/app-debug.apk'

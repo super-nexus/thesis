@@ -55,6 +55,20 @@ class ViewController: UIViewController {
                     self.present(vc, animated: true, completion: nil);
                 }
             }
+            else if message == "INCORRECT CREDENTIALS" {
+                DispatchQueue.main.async {
+                    let alert = UIAlertController(title: "Incorrect credentials",
+                                                  message: "You entered incorrect username or password. Do you want to try again?",
+                                                  preferredStyle: UIAlertController.Style.alert)
+                    
+                    // add an action (button)
+                     alert.addAction(UIAlertAction(title: "Try again", style: UIAlertAction.Style.default, handler: nil))
+
+                     // show the alert
+                     self.present(alert, animated: true, completion: nil)
+                    
+                }
+            }
             
         })
         

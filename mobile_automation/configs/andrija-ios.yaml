@@ -1,0 +1,4 @@
+platformName: "iOS"
+deviceName: "iPhone 8"
+automationName: "XCUItest"
+appPath: '/Users/andrijakuzmanov/Library/Developer/Xcode/DerivedData/thesis-ios-hclsszzhnwwqnxcvmbavtpajlbpg/Build/Products/Debug-iphonesimulator/thesis-ios.app'
