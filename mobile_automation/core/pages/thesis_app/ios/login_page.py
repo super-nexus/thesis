@@ -8,3 +8,6 @@ class LoginPage(BaseLoginPage):
 
     def get_password_input(self, **kwargs):
         return self.driver.find_element_by_accessibility_id('password_input', **kwargs)
+
+    def get_login_button(self, **kwargs):
+        return self.driver.find_element_by_accessibility_id('login_button', **kwargs)
