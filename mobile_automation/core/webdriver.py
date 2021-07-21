@@ -85,7 +85,7 @@ class WebDriver(BaseDriver):
 
     def is_keyboard_shown(self):
         # android might not hide the keyboard after the test thus it can be checked before the app started
-        if self.opensync_web.is_android_from_driver():
+        if self.is_android():
             return super().is_keyboard_shown()
         else:
             try:
@@ -124,6 +124,14 @@ class WebDriver(BaseDriver):
 
         if self.is_keyboard_shown():
             raise Exception('Can not hide keyboard')
+
+    def find_element_by_id(self, id_, wait=5):
+        self.implicitly_wait(wait)
+        return super().find_element_by_id(id_)
+
+    def find_element_by_xpath(self, xpath, wait=5):
+        self.implicitly_wait(wait)
+        return super().find_element_by_xpath(xpath)
 
     def is_android(self):
         return self.config['platformName'].lower() == "android"

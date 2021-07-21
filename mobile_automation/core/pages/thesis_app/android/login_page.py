@@ -11,3 +11,13 @@ class LoginPage(BaseLoginPage):
 
     def get_login_button(self, **kwargs):
         return self.driver.find_element_by_id('login_button', **kwargs)
+
+    def get_popup_title(self, **kwargs):
+        return self.driver.find_element_by_id('alertTitle', **kwargs)
+
+    def get_popup_description(self, **kwargs):
+        return self.driver.find_element_by_id('message', **kwargs)
+
+    def get_try_again_button(self, **kwargs):
+        return self.driver.find_element_by_xpath(
+            '//android.widget.Button[@text="TRY AGAIN"]', **kwargs)
