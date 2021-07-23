@@ -21,4 +21,3 @@ class ThesisApp(BasePage):
         self.get_password_input().send_keys('Diploma')
         log.info("Tapping on login button")
         self.get_login_button().click()
-        self.load_page('second_page')

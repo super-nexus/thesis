@@ -12,7 +12,10 @@ class BaseCase:
     def setup_class(cls):
         log.info("Starting test cases")
         log.info("Loading initial page")
-        cls.base_page = cls.load_initial_page()
+        cls.data = {
+            'base_page': cls.load_initial_page()
+        }
+        log.info("Initial page loaded")
 
     @classmethod
     def teardown_class(cls):
@@ -27,15 +30,15 @@ class BaseCase:
         return app_base_page.load_first_page()
 
     def load_page(self, page_name):
-        page_module = import_module(f'core.pages.{pytest.app_name}.{self.base_page.platform}.{page_name}')
+        page_module = import_module(f'core.pages.{pytest.app_name}.{self.data["base_page"].platform}.{page_name}')
         page = getattr(page_module, get_class_name(page_name))
         page_obj = page()
         if page_obj.wait_page():
-            self.base_page = page_obj
+            self.data['base_page'] = page_obj
             return page_obj
         else:
             raise TimeoutError("Page has exceeded load time")
 
     @property
     def current_page(self):
-        return self.base_page
+        return self.data['base_page']

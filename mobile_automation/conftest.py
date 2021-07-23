@@ -1,5 +1,6 @@
 import pytest
 import os
+import pathlib
 
 def pytest_addoption(parser):
     parser.addoption("--config", action="store", help="mobile config file")
@@ -9,6 +10,7 @@ def pytest_addoption(parser):
 def pytest_configure(config):
     pytest.config_name = config.getoption('config')
     pytest.app_name = config.getoption('app')
+    pytest.config_path = os.path.join(os.path.dirname(__file__), 'configs', f'{config.getoption("config")}.yaml')
 
 
 def pytest_logger_config(logger_config):

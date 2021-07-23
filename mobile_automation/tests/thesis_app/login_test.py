@@ -1,8 +1,8 @@
 from core.base_case import BaseCase
 import logging
-from time import sleep
 
 log = logging.getLogger('main_logger')
+
 
 class TestDemo(BaseCase):
 

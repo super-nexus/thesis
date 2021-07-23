@@ -1,4 +1,4 @@
-from core.pages.thesis_app.thesis_app import BasePage
+from core.pages.thesis_app.thesis_app import ThesisApp as BasePage
 
 
 class LoginPage(BasePage):
