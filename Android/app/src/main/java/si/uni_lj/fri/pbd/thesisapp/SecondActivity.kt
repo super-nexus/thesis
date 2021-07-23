@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.*
 import android.widget.SeekBar.OnSeekBarChangeListener
 
+
 class SecondActivity : AppCompatActivity() {
 
     companion object{
