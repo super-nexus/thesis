@@ -1,6 +1,8 @@
 from core.util import get_class_name
 import pytest
 import logging
+from core.util import load_config
+from core.webdriver import WebDriver
 from importlib import import_module
 
 log = logging.getLogger('main_logger')
@@ -11,6 +13,8 @@ class BaseCase:
     @classmethod
     def setup_class(cls):
         log.info("Starting test cases")
+        log.info("Loading driver")
+        cls.init_driver()
         log.info("Loading initial page")
         cls.data = {
             'base_page': cls.load_initial_page()
@@ -20,6 +24,14 @@ class BaseCase:
     @classmethod
     def teardown_class(cls):
         log.info("Test cases done")
+
+    @classmethod
+    def init_driver(cls):
+        driver = WebDriver(config=load_config(pytest.config_path))
+        if driver.driver_loaded:
+            driver.reload_driver()
+        else:
+            driver.load_driver()
 
     @classmethod
     def load_initial_page(cls):

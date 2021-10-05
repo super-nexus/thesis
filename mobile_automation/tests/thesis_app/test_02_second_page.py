@@ -1,11 +1,9 @@
-import pytest
-
 from core.base_case import BaseCase
+from appium.webdriver.common.touch_action import TouchAction
 import logging
-import numpy as np
+
 
 log = logging.getLogger('main_logger')
-
 
 
 class Test02SecondPage(BaseCase):
@@ -33,18 +31,19 @@ class Test02SecondPage(BaseCase):
         assert current_switch_state != original_switch_state, "Switch state has not changed"
         log.info("Switch state updated successfully")
 
-    @pytest.mark.parametrize('setting_name', ["Settings 1", "Settings 2", "Settings 3"])
-    def test_02_settings_switch(self, setting_name):
-        log.info("Verifying settings checkboxes")
-        log.info("Getting checkboxes state")
-        original_settings_state = self.get_setting_state(setting_name)
-        log.info(f"Tapping on the setting {setting_name}")
-        self.current_page.get_settings_by_name(setting_name).click()
-        log.info("Verifying state has changed")
-        current_settings_state = self.get_setting_state(setting_name)
-        assert original_settings_state != current_settings_state, \
-            f"Setting state for setting {setting_name} hasn't been updated"
-        log.info("All settings updated successfully")
+    def test_02_settings_switch(self):
+        settings = ["Settings 1", "Settings 2", "Settings 3"]
+        for setting_name in settings:
+            log.info("Verifying settings checkboxes")
+            log.info("Getting checkboxes state")
+            original_settings_state = self.get_setting_state(setting_name)
+            log.info(f"Tapping on the setting {setting_name}")
+            self.current_page.get_settings_by_name(setting_name).click()
+            log.info("Verifying state has changed")
+            current_settings_state = self.get_setting_state(setting_name)
+            assert original_settings_state != current_settings_state, \
+                f"Setting state for setting {setting_name} hasn't been updated"
+            log.info("All settings updated successfully")
 
     def test_03_option_buttons(self):
         log.info("Verifying option buttons work")
@@ -78,6 +77,8 @@ class Test02SecondPage(BaseCase):
         first_post_text = "First post text"
         log.info(f'Entering "{first_post_text}" into comment box')
         self.current_page.get_comment_box().send_keys(first_post_text)
+        log.info("Hiding the keyboard")
+        self.current_page.hide_keyboard()
         log.info("Tapping on the post button")
         self.current_page.get_post_button().click()
         log.info("Verifying that the post has been added")
@@ -87,17 +88,33 @@ class Test02SecondPage(BaseCase):
             "Post text does not match the entered text"
         log.info("Post successfully added")
 
+    def test_06_verify_slider(self):
+        log.info("Verifying slider/seek bar")
+        slider = self.current_page.get_seekbar()
+        slider_label = self.current_page.get_seekbar_label()
+        slider_start = 0
+        slider_y = slider.size["height"] / 2
+        width_percentage = 0.49 if self.current_page.is_android() else 0.455
+        slider_end = slider_start + slider.size["width"] * width_percentage
+        action = TouchAction(self.current_page.driver)
+        log.info("Sliding the seek bar to 50%")
+        action.press(slider, slider_start, slider_y).wait(1000).move_to(slider, slider_end - 1, slider_y).wait(1000).release().perform()
+        assert slider_label.text == "50%", "Slider should be set to 50%"
+
     def get_switch_state(self):
-        return self.current_page.get_private_mode_switch().get_attribute('checked') == "true"
+        if self.current_page.is_android():
+            return self.current_page.get_private_mode_switch().get_attribute('checked') == "true"
+        else:
+            return self.current_page.get_private_mode_switch().get_attribute('value') == '1'
 
     def get_setting_state(self, settings_name):
-        return self.current_page.get_settings_by_name(settings_name)
+        return self.current_page.is_checked(lambda: self.current_page.get_settings_by_name(settings_name))
 
     def get_option_states(self, option_names):
         return [self.get_option_state(name) for name in option_names]
 
     def get_option_state(self, option_name):
-        return self.current_page.get_option_by_name(option_name).get_attribute('checked') == "true"
+        return self.current_page.is_checked(lambda: self.current_page.get_option_by_name(option_name))
 
     def comment_box_empty(self):
         return self.current_page.get_comment_box().text == ''

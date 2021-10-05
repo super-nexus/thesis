@@ -185,26 +185,6 @@ class MyWebElement(webelement.WebElement):
                 return False
             return True
 
-    def find_element_by_text(self, text, **kwargs):
-        if self.opensync_web.current_page.is_android():
-            return self.find_element_by_xpath(f'//*[@text="{text}"]', **kwargs)
-        else:
-            return self.find_element_by_xpath(f'//*[@value="{text}"]', **kwargs)
-
-    def find_elements_by_text(self, text, **kwargs):
-        if self.opensync_web.current_page.is_android():
-            return self.find_elements_by_xpath(f'//*[@text="{text}"]', **kwargs)
-        else:
-            return self.find_elements_by_xpath(f'//*[@value="{text}"]', **kwargs)
-
-    def is_displayed(self):
-        """Checks if element is displayed (Android) or visible (iOS)."""
-        if self.opensync_web.current_page.is_android():
-            return super().is_displayed()
-        else:
-            with self.suppress_w3c:
-                return self.get_attribute('visible') == 'true'
-
     def calc_element_onscreen_percentage(self, screen_width, screen_height, x, y, w, h):
         intersecting_area = max(0, min(screen_width, x + w) - max(0, x)) * max(0, min(screen_height, y + h) - max(0, y))
         # percentage calculated relative to element

@@ -20,8 +20,9 @@ def singleton(class_):
 @singleton
 class WebDriver(BaseDriver):
 
-    def __init__(self, config):
-        self.config = config
+    def __init__(self, config=None):
+        if config is not None:
+            self.config = config
         self.driver_loaded = False
 
     def load_driver(self):
@@ -39,6 +40,9 @@ class WebDriver(BaseDriver):
         self.implicitly_wait(60)
 
         self.driver_loaded = True
+
+    def reload_driver(self):
+        self.reset()
 
     def scroll_page(self, direction='down', thr1=0.33, thr2=0.66, offset=0.5, duration=0.1):
         """Scrolls whole page in direction (up/down/left/right)
@@ -132,6 +136,10 @@ class WebDriver(BaseDriver):
     def find_element_by_xpath(self, xpath, wait=5):
         self.implicitly_wait(wait)
         return super().find_element_by_xpath(xpath)
+
+    def find_element_by_accessibility_id(self, id_, wait=5):
+        self.implicitly_wait(wait)
+        return super().find_element_by_accessibility_id(id_)
 
     def is_android(self):
         return self.config['platformName'].lower() == "android"

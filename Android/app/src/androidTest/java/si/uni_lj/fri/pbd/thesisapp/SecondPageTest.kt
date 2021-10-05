@@ -29,6 +29,7 @@ import org.junit.runner.RunWith
 import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Rule
+import si.uni_lj.fri.pbd.thesisapp.CustomViewActions.setProgress
 import java.util.concurrent.TimeoutException
 
 /**
@@ -93,6 +94,14 @@ class SecondPageTest {
         onView(withId(R.id.post_button)).perform(click())
         onData(allOf(`is`(instanceOf(String::class.java)), `is`(postText)))
             .check(matches(withText(postText)))
+    }
+
+    @Test
+    fun verifySeekBar(){
+        onView(withId(R.id.seek_bar))
+            .perform(setProgress(50))
+        onView(withId(R.id.seek_bar_label))
+            .check(matches(withText("50%")))
     }
 
 }

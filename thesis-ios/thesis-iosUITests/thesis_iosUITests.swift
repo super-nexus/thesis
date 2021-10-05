@@ -22,21 +22,56 @@ class thesis_iosUITests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() throws {
+    func testUsernameInput() throws {
+        
+        let app = XCUIApplication()
+        app.launch()
+        
+        let usernameInput = "Hello world"
+        let usernameInputField = app.textFields["username_input"]
+
+        usernameInputField.tap()
+        usernameInputField.typeText(usernameInput)
+        XCTAssert(usernameInputField.value as! String == usernameInput)
+    }
+    
+    func testIncorrectLogin() throws {
         // UI tests must launch the application that they test.
         let app = XCUIApplication()
         app.launch()
+        
+        let usernameInput = "Andrija"
+        let passwordInput = "bla bla"
+        loginWith(app: app, username: usernameInput, password: passwordInput)
 
+        
+        XCTAssert(app.staticTexts["Incorrect credentials"].waitForExistence(timeout: 5))
+        XCTAssert(app.buttons["Try again"].waitForExistence(timeout: 5))
+        
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
-
-    func testLaunchPerformance() throws {
-        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
-            // This measures how long it takes to launch your application.
-            measure(metrics: [XCTApplicationLaunchMetric()]) {
-                XCUIApplication().launch()
-            }
-        }
+    
+    func testCorrectLogin() throws {
+        let app = XCUIApplication()
+        app.launch()
+        
+        let usernameInput = "Andrija"
+        let passwordInput = "Diploma"
+        loginWith(app: app, username: usernameInput, password: passwordInput)
+        
+        XCTAssert(app.staticTexts["Username"].waitForExistence(timeout: 5))
     }
+    
+    func loginWith(app: XCUIApplication, username: String, password: String){
+        let usernameInputField = app.textFields["username_input"]
+        let passwordInputField = app.textFields["password_input"]
+        
+        usernameInputField.tap()
+        usernameInputField.typeText(username)
+        passwordInputField.tap()
+        passwordInputField.typeText(password)
+        app.buttons["login_button"].tap()
+    }
+    
 }

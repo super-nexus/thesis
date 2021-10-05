@@ -47,13 +47,6 @@ class ExampleInstrumentedTest {
             = ActivityScenarioRule(MainActivity::class.java)
 
     @Test
-    fun useAppContext() {
-        // Context of the app under test.
-        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("si.uni_lj.fri.pbd.thesisapp", appContext.packageName)
-    }
-
-    @Test
     fun verify_input_fields(){
         val usernameInput = "Andrija"
         val passwordInput = "blalbla"

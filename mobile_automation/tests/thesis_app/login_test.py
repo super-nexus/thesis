@@ -4,9 +4,11 @@ import logging
 log = logging.getLogger('main_logger')
 
 
-class TestDemo(BaseCase):
+class TestLogin(BaseCase):
 
     def setup_method(self):
+        self.current_page.clear_input(self.current_page.get_username_input)
+        self.current_page.clear_input(self.current_page.get_password_input)
         if self.popup_visible():
             log.info("Tapping on try again button")
             self.current_page.get_try_again_button().click()
@@ -42,11 +44,14 @@ class TestDemo(BaseCase):
         self.current_page.get_login_button().click()
 
     def popup_visible(self, assertion=False):
-        return self.current_page.are_elements_usable([
+        popup_elements = [
             self.current_page.get_popup_title,
-            self.current_page.get_popup_description,
             self.current_page.get_try_again_button
-        ], assertion)
+        ]
+        if self.current_page.is_android():
+            popup_elements.append(self.current_page.get_popup_description)
+
+        return self.current_page.are_elements_usable(popup_elements, assertion)
 
     def check_if_inputs_usable(self):
         log.info("Checking if username and password input fields are visible")

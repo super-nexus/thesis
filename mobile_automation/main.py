@@ -8,7 +8,7 @@ MOBILE_AUTOMATION = "mobile_automation"
 ESPRESSO = "espresso"
 XCUITEST = "xcuitest"
 
-TESTING_ITERATIONS = 20
+TESTING_ITERATIONS = 100
 
 
 def run_tests(t):
@@ -17,6 +17,8 @@ def run_tests(t):
     print("Test results: ")
     print(f"Average time: {np.average(t.run_results)}")
     print(f"Median time: {np.median(t.run_results)}")
+    print(f"Fastest run: {np.min(t.run_results)}")
+    print(f"Slowest run: {np.max(t.run_results)}")
     print(f"Total time: {np.sum(t.run_results)}")
     print(f"All test cases: {t.all_cases}")
     print(f"Failed test cases: {t.failed_cases}")

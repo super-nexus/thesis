@@ -15,6 +15,9 @@
 		699680882688B4AF002B8124 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 699680862688B4AF002B8124 /* LaunchScreen.storyboard */; };
 		699680932688B4AF002B8124 /* thesis_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 699680922688B4AF002B8124 /* thesis_iosTests.swift */; };
 		6996809E2688B4AF002B8124 /* thesis_iosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6996809D2688B4AF002B8124 /* thesis_iosUITests.swift */; };
+		69A9FFF826A707A3003FA6B5 /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A9FFF726A707A3003FA6B5 /* CheckBox.swift */; };
+		69B6079226AEBE6B00BFD7B4 /* DLRadioButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 69B6079126AEBE6B00BFD7B4 /* DLRadioButton.m */; };
+		69B6079426AEF00B00BFD7B4 /* secondPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B6079326AEF00B00BFD7B4 /* secondPage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +52,11 @@
 		699680992688B4AF002B8124 /* thesis-iosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "thesis-iosUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6996809D2688B4AF002B8124 /* thesis_iosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = thesis_iosUITests.swift; sourceTree = "<group>"; };
 		6996809F2688B4AF002B8124 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		69A9FFF726A707A3003FA6B5 /* CheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
+		69B6078F26AEBE5100BFD7B4 /* DLRadioButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = DLRadioButton.h; path = "../../../../../Downloads/DLRadioButton-1.4.12/DLRadioButton/DLRadioButton.h"; sourceTree = "<group>"; };
+		69B6079026AEBE6A00BFD7B4 /* thesis-ios-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "thesis-ios-Bridging-Header.h"; sourceTree = "<group>"; };
+		69B6079126AEBE6B00BFD7B4 /* DLRadioButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DLRadioButton.m; path = "../../../../../Downloads/DLRadioButton-1.4.12/DLRadioButton/DLRadioButton.m"; sourceTree = "<group>"; };
+		69B6079326AEF00B00BFD7B4 /* secondPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = secondPage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +107,8 @@
 		6996807A2688B4AD002B8124 /* thesis-ios */ = {
 			isa = PBXGroup;
 			children = (
+				69B6079126AEBE6B00BFD7B4 /* DLRadioButton.m */,
+				69B6078F26AEBE5100BFD7B4 /* DLRadioButton.h */,
 				6996807B2688B4AD002B8124 /* AppDelegate.swift */,
 				6996807D2688B4AD002B8124 /* SceneDelegate.swift */,
 				6996807F2688B4AD002B8124 /* ViewController.swift */,
@@ -106,6 +116,8 @@
 				699680842688B4AF002B8124 /* Assets.xcassets */,
 				699680862688B4AF002B8124 /* LaunchScreen.storyboard */,
 				699680892688B4AF002B8124 /* Info.plist */,
+				69A9FFF726A707A3003FA6B5 /* CheckBox.swift */,
+				69B6079026AEBE6A00BFD7B4 /* thesis-ios-Bridging-Header.h */,
 			);
 			path = "thesis-ios";
 			sourceTree = "<group>";
@@ -122,6 +134,7 @@
 		6996809C2688B4AF002B8124 /* thesis-iosUITests */ = {
 			isa = PBXGroup;
 			children = (
+				69B6079326AEF00B00BFD7B4 /* secondPage.swift */,
 				6996809D2688B4AF002B8124 /* thesis_iosUITests.swift */,
 				6996809F2688B4AF002B8124 /* Info.plist */,
 			);
@@ -195,6 +208,7 @@
 				TargetAttributes = {
 					699680772688B4AD002B8124 = {
 						CreatedOnToolsVersion = 12.5.1;
+						LastSwiftMigration = 1250;
 					};
 					6996808D2688B4AF002B8124 = {
 						CreatedOnToolsVersion = 12.5.1;
@@ -258,6 +272,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				69A9FFF826A707A3003FA6B5 /* CheckBox.swift in Sources */,
+				69B6079226AEBE6B00BFD7B4 /* DLRadioButton.m in Sources */,
 				699680802688B4AD002B8124 /* ViewController.swift in Sources */,
 				6996807C2688B4AD002B8124 /* AppDelegate.swift in Sources */,
 				6996807E2688B4AD002B8124 /* SceneDelegate.swift in Sources */,
@@ -276,6 +292,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				69B6079426AEF00B00BFD7B4 /* secondPage.swift in Sources */,
 				6996809E2688B4AF002B8124 /* thesis_iosUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -436,6 +453,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "thesis-ios/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -444,6 +462,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "andrija.thesis-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "thesis-ios/thesis-ios-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -454,6 +474,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "thesis-ios/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -462,6 +483,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "andrija.thesis-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "thesis-ios/thesis-ios-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

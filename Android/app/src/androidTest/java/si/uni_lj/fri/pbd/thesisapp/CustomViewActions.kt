@@ -1,15 +1,16 @@
 package si.uni_lj.fri.pbd.thesisapp
 
 import android.view.View
-import androidx.test.espresso.Espresso.onView
+import android.widget.SeekBar
 import androidx.test.espresso.PerformException
 import androidx.test.espresso.UiController
 import androidx.test.espresso.ViewAction
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.espresso.util.HumanReadables
 import androidx.test.espresso.util.TreeIterables
-import java.util.concurrent.TimeoutException
 import org.hamcrest.Matcher
+import java.util.concurrent.TimeoutException
+
 
 object CustomViewActions {
 
@@ -57,4 +58,20 @@ object CustomViewActions {
         }
     }
 
+    fun setProgress(progress: Int): ViewAction? {
+        return object : ViewAction {
+            override fun perform(uiController: UiController, view: View) {
+                val seekBar = view as SeekBar
+                seekBar.progress = progress
+            }
+
+            override fun getDescription(): String {
+                return "Set a progress on a SeekBar"
+            }
+
+            override fun getConstraints(): Matcher<View> {
+                return isAssignableFrom(SeekBar::class.java)
+            }
+        }
+    }
 }
